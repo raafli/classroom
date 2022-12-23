@@ -34,8 +34,9 @@
                                 <div class="container">
                                     <br><h1 class="text-center mb-5">Data Siswa</h1>
                                     <hr>
+                                    @if(auth()->user()->role=="admin")
                                     <a href="/tambahsiswa" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i></a>
-
+                                    @endif
                                     <table id="datatable" class="table text-center table-bordered dt-responsive nowrap"
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
@@ -50,7 +51,9 @@
                                                 <th scope="col">No Telpon</th>
                                                 <th scope="col">Jenis Kelamin</th>
                                                 <th scope="col">Dibuat</th>
+                                                @if(auth()->user()->role=="admin")
                                                 <th scope="col">Aksi</th>
+                                                @endif
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -72,6 +75,7 @@
                                                     <td>0{{ $row->notelpon }}</td>
                                                     <td>{{ $row->jeniskelamin }}</td>
                                                     <td>{{ $row->created_at}}</td>
+                                                    @if(auth()->user()->role=="admin")
                                                     <td scope="row">
                                                         <a href="/tampilkandatasiswa/{{ $row->id }}"
                                                             class="btn btn-warning"><i
@@ -81,6 +85,7 @@
                                                             data-nama="{{ $row->nama }}"><i
                                                                 class="fa-sharp fa-solid fa-trash"></i></a>
                                                     </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
                                         </tbody>
@@ -141,6 +146,13 @@
             toastr.success("{{ Session::get('succes') }}");
         @endif
     </script>
+     <script>
+        @if (Session::has('error'))
+            toastr.error("{{ Session::get('error') }}");
+        @endif
+    </script>
+
+
 
     </html>
 @endsection

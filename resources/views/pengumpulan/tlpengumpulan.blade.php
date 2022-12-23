@@ -27,17 +27,12 @@
                             <form action="/uppengum/{{ $data->id }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Nama</label>
-                                    <select class="form-select" @error('siswas_id') @enderror name="siswas_id"
-                                        id="siswas_id">
-                                        <option value disabled selected>Pilih Siswa</option>
-                                        @foreach ($datass as $b)
-                                            <option value="{{ $b->id }}"<?php if ($data->siswas_id == $b->id) {
-                                                echo 'selected';
-                                            } ?>>{{ $b->nama }}
-                                            </option>
-                                        @endforeach
-                                    </select>
+                                    <label for="exampleInputEmail1" class="form-label">Nama Siswa</label>
+                                    @foreach ( $datasss as $b)
+                                    <input type="text" name="siswas_id" class="form-control"
+                                    id="exampleInputEmail1" readonly aria-describedby="emailHelp" placeholder="Nama"
+                                    value="{{ $b->nama }}">
+                                    @endforeach
                                     @error('siswas_id')
                                         <div class="text-danger">
                                             {{ $message }}

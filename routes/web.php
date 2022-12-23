@@ -32,7 +32,6 @@ Route::get('/coba', function () {
 
     Route::group(['middleware' => ['auth', 'hakakses:admin']],function(){
     //siswa
-    Route::get('/datasiswa',[SiswaController::class, 'index'])->name('datasiswa');
     Route::get('/tambahsiswa',[SiswaController::class, 'tambahsiswa'])->name('tambahsiswa')->middleware('auth');
     Route::post('/insertsiswa',[SiswaController::class, 'insertsiswa'])->name('insertsiswa')->middleware('auth');
     Route::get('/tampilkandatasiswa/{id}',[SiswaController::class, 'tampilkandatasiswa'])->name('tampilkandatasiswa')->middleware('auth');
@@ -47,14 +46,13 @@ Route::get('/coba', function () {
     Route::get('/deleteguru/{id}',[GuruController::class, 'deleteguru'])->name('deleteguru')->middleware('auth');
 
     //tugas
-    Route::get('/datatugas',[TugasController::class, 'index'])->name('datatugas')->middleware('auth');
     Route::get('/tambahtugas',[TugasController::class, 'tambahtugas'])->name('tambahtugas')->middleware('auth');
     Route::post('/inserttugas',[TugasController::class, 'inserttugas'])->name('inserttugas')->middleware('auth');
     Route::get('/tampilkandatatugas/{id}',[TugasController::class, 'tampilkandatatugas'])->name('tampilkandatatugas')->middleware('auth');
     Route::post('/updatedatatugas/{id}',[TugasController::class, 'updatedatatugas'])->name('updatedatatugas')->middleware('auth');
     Route::get('/deletetugas/{id}',[TugasController::class, 'deletetugas'])->name('deletetugas')->middleware('auth');
 
-//mapel
+    //mapel
     Route::get('/datamapel',[MapelController::class, 'index'])->name('datamapel')->middleware('auth');
     Route::get('/tambahmapel',[MapelController::class, 'tambahmapel'])->name('tambahmapel')->middleware('auth');
     Route::post('/insertmapel',[MapelController::class, 'insertmapel'])->name('insertmapel')->middleware('auth');
@@ -64,7 +62,7 @@ Route::get('/coba', function () {
 
 
 
-//kelas
+    //kelas
     Route::get('/datakelas',[KelasController::class, 'index'])->name('datakelas')->middleware('auth');
     Route::get('/tambahkelas',[KelasController::class, 'tambahkelas'])->name('tambahkelas')->middleware('auth');
     Route::post('/insertkelas',[KelasController::class, 'insertkelas'])->name('insertkelas')->middleware('auth');
@@ -74,8 +72,10 @@ Route::get('/coba', function () {
 
 });
 
-    Route::group(['middleware' => ['auth', 'hakakses:admin,user']],function(){
+Route::group(['middleware' => ['auth', 'hakakses:admin,user']],function(){
 
+    Route::get('/datasiswa',[SiswaController::class, 'index'])->name('datasiswa');
+    Route::get('/datatugas',[TugasController::class, 'index'])->name('datatugas')->middleware('auth');
     Route::get('/pengumpulan',[PengumpulanController::class, 'index'])->name('pengumpulan')->middleware('auth');
     Route::get('/tpengum',[PengumpulanController::class, 'tpengum'])->name('tpengum')->middleware('auth');
     Route::post('/intpengum',[PengumpulanController::class, 'intpengum'])->name('intpengum')->middleware('auth');

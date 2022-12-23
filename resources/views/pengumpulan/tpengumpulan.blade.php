@@ -27,6 +27,13 @@
                             <form action="/intpengum" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Nama Siswa</label>
+                                    @foreach ( $datas as $b)
+                                    <input type="text" name="siswas_id" class="form-control"
+                                    id="exampleInputEmail1" readonly aria-describedby="emailHelp" placeholder="Halaman"
+                                    value="{{ $b->nama }}">
+                                    @endforeach
+                                {{-- <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Nama</label>
                                     <select class="form-select" @error('siswas_id') @enderror name="siswas_id"
                                         id="siswas_id">
@@ -34,7 +41,7 @@
                                         @foreach ($datas as $b)
                                             <option value="{{ $b->id }}">{{ $b->nama }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
                                     @error('siswas_id')
                                         <div class="text-danger">
                                             {{ $message }}

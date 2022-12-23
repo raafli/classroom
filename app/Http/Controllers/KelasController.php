@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kelas;
+use App\Models\siswa;
+use App\Models\Pengumpulan;
 use Illuminate\Http\Request;
 
 class KelasController extends Controller
@@ -48,6 +50,10 @@ class KelasController extends Controller
         }
 
         public function deletekelas($id){
+            $count = siswa::where('kelas_id', $id)->count();
+            if($count > 0){
+                return back()->with('error', 'Kelas sedang digunakan');
+            }
             $data = Kelas::find($id);
             $data->delete();
 

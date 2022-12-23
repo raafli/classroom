@@ -27,15 +27,6 @@
                             <form action="/updatedatatugas/{{ $datass->id }}" method="POST"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Halaman</label>
-                                    <input type="text" name="hal" class="form-control"
-                                        id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $datass->hal }}">
-                                    @error('hal')
-                                        <div class="text-danger">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
                                 <br><div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Mata Pelajaran</label>
                                     <select class="form-select" @error('mapels_id') @enderror name="mapels_id"
@@ -49,7 +40,15 @@
                                         @endforeach
                                     </select>
                                 </div>
-
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Halaman</label>
+                                    <input type="text" name="hal" class="form-control"
+                                        id="exampleInputEmail1" aria-describedby="emailHelp" value="{{ $datass->hal }}">
+                                    @error('hal')
+                                        <div class="text-danger">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 <br>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Tenggat Waktu</label>

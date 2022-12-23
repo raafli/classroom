@@ -32,7 +32,9 @@
                                 <div class="container">
                                     <b></b><h1 class="text-center mb-5">Pengumpulan</h1>
                                     <hr>
+                                    @if(auth()->user()->role=="user")
                                     <a href="/tpengum" class="btn btn-success mb-3"><i class="fa-solid fa-plus"></i></a>
+                                    @endif
                                     <!--@if ($message = Session::get('succes'))
     <div class="alert alert-success" role="alert">
                                     {{ $message }}
@@ -57,26 +59,49 @@
                                                 $no = 1;
                                             @endphp
                                             @foreach ($data as $row)
-                                                <tr>
-                                                    <th scope="row">{{ $no++ }}</th>
-                                                    <td>
-                                                        <img src="{{ asset('fotopengum/' . $row->foto) }}" alt=""
-                                                            style="width: 40px">
-                                                    </td>
-                                                    <td>{{ $row->nama ? $row->nama->nama : 'Data Tidak Ada' }}</td>
-                                                    <td>{{ $row->hal }}</td>
-                                                    <td>{{ $row->mapel ? $row->mapel->mapel : 'Data Tidak Ada' }}</td>
-                                                    <td>{{ $row->ket }}</td>
-                                                    <td>{{ $row->created_at}}</td>
-                                                    <td scope="row">
-                                                        <a href="/tlpengum/{{ $row->id }}" class="btn btn-warning"><i
-                                                                class="fa-sharp fa-solid fa-pen-to-square"></i></a>
-                                                        <a href="#" class="btn btn-danger delpengum"
-                                                            data-id="{{ $row->id }}"
-                                                            data-nama="{{ $row->nama ? $row->nama->nama : 'Data Tidak Ada' }}"><i
-                                                                class="fa-sharp fa-solid fa-trash"></i></a>
-                                                    </td>
-                                                </tr>
+                                            @if ($row->siswas_id == Auth::user()->name)
+                                            <tr>
+                                                <th scope="row">{{ $no++ }}</th>
+                                                <td>
+                                                    <img src="{{ asset('fotopengum/' . $row->foto) }}" alt=""
+                                                        style="width: 40px">
+                                                </td>
+                                                <td>{{ $row->siswas_id }}</td>
+                                                <td>{{ $row->hal }}</td>
+                                                <td>{{ $row->mapel ? $row->mapel->mapel : 'Data Tidak Ada' }}</td>
+                                                <td>{{ $row->ket }}</td>
+                                                <td>{{ $row->created_at}}</td>
+                                                <td scope="row">
+                                                    <a href="/tlpengum/{{ $row->id }}" class="btn btn-warning"><i
+                                                            class="fa-sharp fa-solid fa-pen-to-square"></i></a>
+                                                    <a href="#" class="btn btn-danger delpengum"
+                                                        data-id="{{ $row->id }}"
+                                                        data-nama="{{ $row->siswas_id }}"><i
+                                                            class="fa-sharp fa-solid fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            @elseif(Auth::user()->role == 'admin')
+                                            <tr>
+                                                <th scope="row">{{ $no++ }}</th>
+                                                <td>
+                                                    <img src="{{ asset('fotopengum/' . $row->foto) }}" alt=""
+                                                        style="width: 40px">
+                                                </td>
+                                                <td>{{ $row->siswas_id }}</td>
+                                                <td>{{ $row->hal }}</td>
+                                                <td>{{ $row->mapel ? $row->mapel->mapel : 'Data Tidak Ada' }}</td>
+                                                <td>{{ $row->ket }}</td>
+                                                <td>{{ $row->created_at}}</td>
+                                                <td scope="row">
+                                                    <a href="/tlpengum/{{ $row->id }}" class="btn btn-warning"><i
+                                                            class="fa-sharp fa-solid fa-pen-to-square"></i></a>
+                                                    <a href="#" class="btn btn-danger delpengum"
+                                                        data-id="{{ $row->id }}"
+                                                        data-nama="{{ $row->siswas_id  }}"><i
+                                                            class="fa-sharp fa-solid fa-trash"></i></a>
+                                                </td>
+                                            </tr>
+                                            @endif
                                             @endforeach
                                         </tbody>
                                     </table>

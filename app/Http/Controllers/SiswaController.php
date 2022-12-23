@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\siswa;
 use App\Models\kelas;
+use App\Models\Pengumpulan;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -87,6 +88,18 @@ class SiswaController extends Controller
         }
 
         public function deletesiswa($id){
+            // $siswa = siswa::where('siswas_id', '$id');
+
+
+
+
+
+
+
+            $count = Pengumpulan::where('siswas_id', $id)->count();
+            if($count > 0){
+                return back()->with('error', 'Nama siswa sedang digunakan');
+            }
             $data = Siswa::find($id);
             $data->delete();
 

@@ -24,11 +24,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="text-center mb-5">Tambah Data Siswa</h1>
+                            @php
+                                $siswa_add = App\Models\User::where('role','user')->get();
+                            @endphp
                             <form action="/insertsiswa" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">NIS</label>
-                                    <input type="text" name="nis" class="form-control" id="exampleInputEmail1"
+                                    <input type="number" name="nis" class="form-control" id="exampleInputEmail1"
                                         aria-describedby="emailHelp" placeholder="NIS">
                                     @error('nis')
                                         <div class="text-danger">
@@ -38,13 +41,19 @@
                                     <br>
                                     <div class="mb-3">
                                         <label for="exampleInputEmail1" class="form-label">Nama Lengkap</label>
-                                        <input type="text" name="nama" class="form-control" id="exampleInputEmail1"
-                                            aria-describedby="emailHelp" placeholder="Nama Lengkap">
+                                        <select class="form-select" name="nama" aria-label="Default select example">
+                                            <option disabled selected>- Pilih siswa -</option>
+                                            @foreach ( $siswa_add as $a )
+                                            <option value="{{$a->name}}">{{$a->name}}</option>
+                                            @endforeach
+                                        </select>
+                                        {{-- <input type="text" name="nama" class="form-control" id="exampleInputEmail1"
+                                            aria-describedby="emailHelp" placeholder="Nama Lengkap" value="{{Auth::user()->name}}">
                                         @error('nama')
                                             <div class="text-danger">
                                                 {{ $message }}
                                             </div>
-                                        @enderror
+                                        @enderror --}}
                                     </div>
                                     <div class="mb-1">
                                         <label for="exampleInputEmail1" class="form-label">Agama</label>

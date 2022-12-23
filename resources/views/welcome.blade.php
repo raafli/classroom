@@ -29,7 +29,7 @@
      <!-- end page title -->
 
 
-    <div class="container-fluid">
+    {{-- <div class="container-fluid">
 
         <div class="page-content-wrapper">
 
@@ -860,6 +860,6 @@
 
 
     </div> <!-- container-fluid -->
-</div>
+</div> --}}
 
 @endsection

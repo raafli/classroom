@@ -26,16 +26,6 @@
                             <h1 class="text-center mb-5">Tambah Tugas</h1>
                             <form action="/inserttugas" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                <br>
-                                <div class="mb-3">
-                                    <label for="exampleInputEmail1" class="form-label">Halaman</label>
-                                    <input type="text" name="hal" class="form-control"
-                                        id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Halaman">
-                                    @error('hal')
-                                        <div class="text-danger">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
                                 <br><div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Mata Pelajaran</label>
                                     <select class="form-select" @error('mapels_id') @enderror name="mapels_id"
@@ -50,6 +40,16 @@
                                             {{ $message }}
                                         </div>
                                     @enderror
+                                    <br>
+                                    <div class="mb-3">
+                                        <label for="exampleInputEmail1" class="form-label">Halaman</label>
+                                        <input type="text" name="hal" class="form-control"
+                                            id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Halaman">
+                                        @error('hal')
+                                            <div class="text-danger">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     <br>
                                     <br>
                                     <div class="mb-3">

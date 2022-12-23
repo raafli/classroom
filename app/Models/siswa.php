@@ -23,6 +23,9 @@ class siswa extends Model
     public function kelas(){
     return $this->belongsTo(kelas::class, 'kelas_id', 'id');
 }
+    public function User(){
+    return $this->hasMany(User::class);
+}
 
     public function getCreatedAtAttribute(){
         return Carbon::parse($this->attributes['created_at'])

@@ -6,6 +6,7 @@ use App\Models\Mapel;
 use App\Models\siswa;
 use App\Models\Pengumpulan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PengumpulanController extends Controller
 {
@@ -17,7 +18,7 @@ class PengumpulanController extends Controller
 
     public function tpengum(){
         $data = mapel::all();
-        $datas = siswa::all();
+        $datas = siswa::where('nama', Auth::user()->name)->get();
         return view('pengumpulan.tpengumpulan', compact('data','datas'));
     }
 
@@ -57,10 +58,11 @@ class PengumpulanController extends Controller
         public function tlpengum($id){
             $data = pengumpulan::findOrfail($id);
             $datas = mapel::all();
+            $datasss = siswa::where('nama', Auth::user()->name)->get();
             $datass = siswa::all();
             //dd($data);
 
-            return view('pengumpulan.tlpengumpulan', compact('data','datas','datass'));
+            return view('pengumpulan.tlpengumpulan', compact('data','datas','datass','datasss'));
         }
 
         public function uppengum(Request $request, $id){

@@ -29,8 +29,7 @@
                 </a>
             </li>
 
-            <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Task</li>
+            <li class="menu-title">Task</li>
 
             <li>
                 <a href="/datatugas" class=" waves-effect">
@@ -45,10 +44,8 @@
                     <span>Pengumpulan Tugas</span>
                 </a>
             </li>
-            @if(auth()->user()->role=="admin")
 
-            <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Data</li>
+            <li class="menu-title">Data</li>
 
             <li>
                 <a href="/datasiswa" class=" waves-effect">
@@ -56,6 +53,7 @@
                     <span>Data Siswa</span>
                 </a>
             </li>
+                @if(auth()->user()->role=="admin")
             <li>
                 <a href="/dataguru" class=" waves-effect">
                     <i class="fa-solid fa-person"></i>
@@ -63,8 +61,7 @@
                 </a>
             </li>
 
-            <ul class="metismenu list-unstyled" id="side-menu">
-                <li class="menu-title">Lainnya</li>
+            <li class="menu-title">Lainnya</li>
 
             <li>
                 <a href="/datamapel" class=" waves-effect">

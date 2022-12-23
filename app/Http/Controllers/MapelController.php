@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\mapel;
+use App\Models\Mapel;
 use App\Models\dtugas;
+use App\Models\Pengumpulan;
 use Illuminate\Http\Request;
 
 class MapelController extends Controller
@@ -20,24 +21,11 @@ class MapelController extends Controller
 
     public function insertmapel(Request $request){
 
-            //  $this->validate($request,[
-            //      'nis' => 'required',
-            //      'nama' => 'required',
-            //      'agama' => 'required',
-            //      'hobi' => 'required',
-            //      'alamat' => 'required',
-            //      'notelpon' => 'required',
-            //      'jeniskelamin' => 'required',
-
-            //  ],[
-            //      'nis.required' => 'Harus diisi',
-            //      'nama.required' => 'Harus diisi',
-            //      'agama.required' => 'Harus diisi',
-            //      'hobi.required' => 'Harus diisi',
-            //      'alamat.required' => 'Harus diisi',
-            //      'notelpon.required' => 'Harus diisi',
-            //      'jeniskelamin.required' => 'Harus diisi',
-            //  ]);
+             $this->validate($request,[
+                 'mapel' => 'required',
+             ],[
+                 'mapel.required' => 'Harus diisi',
+             ]);
 
             $data = mapel::create([
                 'mapel' =>$request->mapel,
@@ -61,6 +49,14 @@ class MapelController extends Controller
         }
 
         public function deletemapel($id){
+            $count = Pengumpulan::where('mapels_id', $id)->count();
+            if($count > 0){
+                return back()->with('error', 'Mapel sedang digunakan');
+            }
+            $count = Mapel::where('mapels_id', $id)->count();
+            if($count > 0){
+                return back()->with('error', 'Mapel sedang digunakan');
+            }
             $data = mapel::find($id);
             $data->delete();
 

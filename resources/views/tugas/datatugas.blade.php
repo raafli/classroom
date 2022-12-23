@@ -54,8 +54,8 @@
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Foto</th>
-                                            <th scope="col">Halaman</th>
                                             <th scope="col">Mata Pelajaran</th>
+                                            <th scope="col">Halaman</th>
                                             <th scope="col">Tenggat Waktu</th>
                                             <th scope="col">Dibuat</th>
                                             @if(auth()->user()->role=="admin")
@@ -74,8 +74,8 @@
                                                     <img src="{{ asset('fototugas/' . $row->foto) }}" alt=""
                                                         style="width: 40px">
                                                 </td>
-                                                <td>{{ $row->hal }}</td>
                                                 <td>{{ $row->mapel ? $row->mapel->mapel : 'Data Tidak Ada' }}</td>
+                                                <td>{{ $row->hal }}</td>
                                                 <td>{{ $row->dl }}</td>
                                                 <td>{{ $row->created_at}}</td>
 
@@ -156,7 +156,7 @@
             var nama = $(this).attr('data-nama');
             swal({
                     title: "Yakin Ingin Menghapus?",
-                    text: "Kamu akan menghapus data tugas dengan nama " + nama + "",
+                    text: "Kamu akan menghapus data tugas dengan mapel " + nama + "",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
